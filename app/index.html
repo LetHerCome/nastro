@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="it" data-light="day">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-visual">
+<title>Nastro</title>
+<meta name="description" content="Una macchina da scrivere che ti fa venire voglia di scrivere.">
+<meta name="theme-color" content="#f7f6f2">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="./icons/icon-180.png">
+  <script type="module" crossorigin src="./assets/index-bd9dRQKN.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-BApg9-KM.css">
+</head>
+<body>
+<div class="bar" id="bar">
+  <div class="brand"><b>Nastro</b><span id="sheetName"></span></div>
+  <span class="meta" id="count"></span>
+  <span class="meta hide-sm" id="pageNo"></span>
+  <button class="icon" id="ambBtn" data-t-aria="ambience"><svg viewBox="0 0 24 24"><path d="M4 14c2-3 4-3 6 0s4 3 6 0 4-3 4-3"/><path d="M4 9c2-3 4-3 6 0s4 3 6 0 4-3 4-3" opacity=".5"/></svg></button>
+  <button class="icon" id="soundBtn" data-t-aria="keys" aria-pressed="true"><svg viewBox="0 0 24 24"><path d="M5 9v6h4l5 4V5L9 9H5z"/><path d="M17 9.5a4 4 0 0 1 0 5" id="soundWave"/></svg></button>
+  <button class="icon hide-sm" id="fsBtn" data-t-aria="fullscreen"><svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+  <button class="icon" id="shareBtn" data-t-aria="share"><svg viewBox="0 0 24 24"><path d="M12 4v11"/><path d="M8 8l4-4 4 4"/><path d="M5 13v6h14v-6"/></svg></button>
+  <button class="icon" id="menuBtn" data-t-aria="menu"><svg viewBox="0 0 24 24"><path d="M5 7h14M5 12h14M5 17h9"/></svg></button>
+</div>
+
+<div class="stage" id="stage"><div class="rig" id="rig"><div class="paper" id="paper"><div id="sheets"></div><div id="type"></div></div></div></div>
+<div class="light" id="light"></div>
+<div class="platen" id="platen"><div class="goalbar" id="goalbar"></div></div>
+<div class="guide" id="guide"><div class="caret" id="caret"></div><div class="pin"></div></div>
+<div class="hint" id="hint" data-t="start"></div>
+
+<textarea id="ta" spellcheck="false" autocapitalize="sentences" autocomplete="off" autocorrect="off" aria-label="Nastro"></textarea>
+
+<aside class="drawer" id="drawer" aria-label="Nastro">
+  <div class="tabs" role="tablist">
+    <button role="tab" data-tab="sheets" aria-selected="true" data-t="sheets"></button>
+    <button role="tab" data-tab="writing" aria-selected="false" data-t="writing"></button>
+    <button role="tab" data-tab="machine" aria-selected="false" data-t="machine"></button>
+  </div>
+
+  <section class="pane" data-pane="sheets">
+    <h2 data-t="yourSheets"></h2>
+    <div class="row"><button id="newBtn" data-t="newSheet"></button><button id="modeBtn" data-t="wholeSheet"></button></div>
+    <input class="search" id="search" type="search" data-t-ph="search" autocomplete="off">
+    <ul class="list" id="list"></ul>
+    <p id="noResults" hidden data-t="noResults"></p>
+    <div class="row"><button id="copyBtn" data-t="copyText"></button><button id="exportBtn" data-t="exportTxt"></button></div>
+    <p data-t="storage"></p>
+  </section>
+
+  <section class="pane" data-pane="writing" hidden>
+    <h2 data-t="writing"></h2>
+    <div class="stats">
+      <div class="stat"><b id="stToday">0</b><span data-t="today"></span></div>
+      <div class="stat"><b id="stStreak">0</b><span data-t="streak"></span></div>
+      <div class="stat"><b id="stTotal">0</b><span data-t="total"></span></div>
+    </div>
+    <h3 data-t="last4"></h3>
+    <div class="cal" id="cal"></div>
+    <h3 data-t="goal"></h3>
+    <div class="row" style="align-items:center"><input class="goal-input" id="goalInput" type="number" min="0" max="20000" step="50" inputmode="numeric"><span id="goalUnit"></span></div>
+    <p data-t="goalHelp"></p>
+    <label class="opt"><input type="checkbox" id="optNoDelete"> <span data-t="noDelete"></span><small data-t="noDeleteHelp"></small></label>
+  </section>
+
+  <section class="pane" data-pane="machine" hidden>
+    <h2 data-t="machine"></h2>
+    <h3 data-t="light"></h3>
+    <div class="seg" id="segLight">
+      <button data-v="auto" data-t="lightAuto"></button><button data-v="day" data-t="lightDay"></button>
+      <button data-v="evening" data-t="lightEvening"></button><button data-v="night" data-t="lightNight"></button>
+    </div>
+    <h3 data-t="sounds"></h3>
+    <label class="slider"><span data-t="keys"></span><input type="range" id="volKeys" min="0" max="1" step="0.05"></label>
+    <div class="seg" id="segAmb">
+      <button data-v="none" data-t="ambNone"></button><button data-v="rain" data-t="ambRain"></button>
+      <button data-v="fire" data-t="ambFire"></button><button data-v="cafe" data-t="ambCafe"></button>
+    </div>
+    <label class="slider"><span data-t="ambience"></span><input type="range" id="volAmb" min="0" max="1" step="0.05"></label>
+    <h3 data-t="font"></h3>
+    <div class="seg" id="segFont"><button data-v="courier" data-t="fontCourier"></button><button data-v="elite" data-t="fontElite"></button></div>
+    <label class="opt"><input type="checkbox" id="optCarriage"> <span data-t="carriage"></span><small data-t="carriageHelp"></small></label>
+    <label class="opt"><input type="checkbox" id="optVibe"> <span data-t="vibe"></span><small data-t="vibeHelp"></small></label>
+    <h3 data-t="lang"></h3>
+    <div class="seg" id="segLang"><button data-v="auto" data-t="langAuto"></button><button data-v="it">Italiano</button><button data-v="en">English</button></div>
+    <p class="credits" data-t="credits"></p>
+  </section>
+</aside>
+<div class="scrim" id="scrim" hidden></div>
+
+<div class="share" id="share" hidden role="dialog" aria-modal="true" aria-labelledby="shareTitle">
+  <div class="share-box">
+    <div class="share-prev"><img id="shareImg" alt=""></div>
+    <div class="share-side">
+      <div><h2 id="shareTitle" data-t="shareTitle"></h2><p id="shareInfo"></p></div>
+      <div class="seg-label" data-t="format"></div>
+      <div class="seg" id="segFmt"><button data-v="story" aria-pressed="true" data-t="story"></button><button data-v="post" aria-pressed="false" data-t="post"></button></div>
+      <div class="seg-label" data-t="lightLabel"></div>
+      <div class="seg" id="segLook"><button data-v="lamp" aria-pressed="true" data-t="lamp"></button><button data-v="day" aria-pressed="false" data-t="day"></button></div>
+      <p data-t="shareHint"></p>
+      <div class="share-actions">
+        <button class="primary" id="shareSave" data-t="saveImage"></button>
+        <button id="shareCopy" data-t="copyImage"></button>
+        <button id="shareClose" data-t="close"></button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast" hidden role="status"></div>
+
+</body>
+</html>

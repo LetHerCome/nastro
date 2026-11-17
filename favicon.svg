@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="70%" r="60%"><stop offset="0" stop-color="#fffdf8"/><stop offset="1" stop-color="#ebe8e1"/></radialGradient>
+    <linearGradient id="pin" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#d6d2ca"/></linearGradient>
+  </defs>
+  <rect width="1024" height="1024" fill="url(#glow)"/>
+  <text x="496" y="640" text-anchor="middle" font-family="Courier Prime, Courier New, monospace" font-size="560" fill="#2a2824" opacity=".92">n</text>
+  <rect x="0" y="716" width="1024" height="308" fill="#f1efea"/>
+  <rect x="0" y="712" width="1024" height="8" fill="#3a362f" opacity=".7"/>
+  <rect x="452" y="698" width="120" height="34" rx="17" fill="url(#pin)" stroke="#bdb8ae" stroke-width="2"/>
+  <rect x="708" y="418" width="12" height="222" fill="#b1392d"/>
+</svg>
