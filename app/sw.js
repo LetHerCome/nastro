@@ -1,8 +1,8 @@
 // Nastro funziona anche offline: pagine dalla rete se c'è, altrimenti dalla cache; il resto dalla cache.
-const CACHE = 'nastro-v3';
+const CACHE = 'nastro-v4';
 self.addEventListener('install', e => {
   // file per file: se uno manca, gli altri restano in cache lo stesso
-  e.waitUntil(caches.open(CACHE).then(c => Promise.allSettled(['./', './index.html', './manifest.webmanifest', './sounds/key.mp3', './sounds/space.mp3', './sounds/ding.mp3', './sounds/ret.mp3', ...Array.from({ length: 13 }, (_, i) => `./sounds/k${i + 1}.mp3`)].map(u => c.add(u)))).then(() => self.skipWaiting()));
+  e.waitUntil(caches.open(CACHE).then(c => Promise.allSettled(['./', './index.html', './manifest.webmanifest', './sounds/key.mp3', './sounds/ding.mp3', './sounds/ret.mp3', ...Array.from({ length: 13 }, (_, i) => `./sounds/k${i + 1}.mp3`)].map(u => c.add(u)))).then(() => self.skipWaiting()));
 });
 self.addEventListener('activate', e => {
   e.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim()));
