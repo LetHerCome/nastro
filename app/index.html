@@ -11,8 +11,8 @@
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="icon" href="./icons/icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="./icons/icon-180.png">
-  <script type="module" crossorigin src="./assets/index-B3lrsJA3.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-YxuCQRCh.css">
+  <script type="module" crossorigin src="./assets/index-C1unfu-a.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-DcEAPESj.css">
 </head>
 <body>
 <div class="bar" id="bar">
@@ -43,11 +43,27 @@
   </div>
 
   <section class="pane" data-pane="sheets">
-    <h2 data-t="yourSheets"></h2>
-    <div class="row"><button id="newBtn" data-t="newSheet"></button><button id="modeBtn" data-t="wholeSheet"></button></div>
+    <div class="pane-head"><button class="back" id="deskBack" data-t="backToDesk" hidden></button></div>
+    <h2 id="sheetsTitle" data-t="yourSheets"></h2>
+    <input class="title-input" id="folderName" data-t-ph="folderName" autocomplete="off" maxlength="60" hidden>
+    <p class="folder-meta" id="folderMeta" hidden></p>
+    <div class="row"><button id="newBtn" data-t="newSheet"></button><button id="newFolderBtn" data-t="newFolder"></button><button id="modeBtn" data-t="wholeSheet"></button></div>
+    <form class="folder-form" id="folderForm" hidden>
+      <input class="search" id="ffName" data-t-ph="folderName" autocomplete="off" maxlength="60">
+      <div class="seg" id="segKind">
+        <button type="button" data-v="novel" data-t="kind_novel"></button><button type="button" data-v="story" data-t="kind_story"></button>
+        <button type="button" data-v="tales" data-t="kind_tales"></button><button type="button" data-v="diary" data-t="kind_diary"></button>
+        <button type="button" data-v="other" data-t="kind_other"></button>
+      </div>
+      <div class="row"><button type="submit" class="primary" data-t="create"></button><button type="button" id="ffCancel" data-t="cancel"></button></div>
+    </form>
     <input class="search" id="search" type="search" data-t-ph="search" autocomplete="off">
+    <ul class="folders" id="folders"></ul>
+    <h3 id="looseTitle" data-t="looseSheets" hidden></h3>
     <ul class="list" id="list"></ul>
     <p id="noResults" hidden data-t="noResults"></p>
+    <p id="emptyFolder" hidden data-t="emptyFolder"></p>
+    <div class="row" id="folderActions" hidden><button id="exportFolderBtn" data-t="exportFolder"></button><button id="delFolderBtn" data-t="delFolder"></button></div>
     <div class="row"><button id="copyBtn" data-t="copyText"></button><button id="exportBtn" data-t="exportTxt"></button><button id="importBtn" data-t="importTxt"></button></div>
     <input type="file" id="importFile" accept=".txt,.md,.text,text/plain,text/markdown" multiple hidden>
     <p data-t="storage"></p>
